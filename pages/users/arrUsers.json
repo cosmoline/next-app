@@ -1,21 +1,21 @@
 [
-            {"name": "Иван",
-            "login": "user1",
-            "password": "123",
-            "photo": "user1.jpg"},
+    {"name": "Иван",
+    "login": "user1",
+    "password": "123",
+    "photo": "user1.jpg"},
 
-            {"name": "Ефросиния",
-            "login": "user2",
-            "password": "123",
-            "photo": "user2.jpg"},
+    {"name": "Ефросиния",
+    "login": "user2",
+    "password": "123",
+    "photo": "user2.jpg"},
 
-            {"name": "Глория",
-            "login": "user3",
-            "password": "123",
-            "photo": "user3.jpg"},
+    {"name": "Глория",
+    "login": "user3",
+    "password": "123",
+    "photo": "user3.jpg"},
 
-            {"name": "Петр",
-            "login": "user4",
-            "password": "123",
-            "photo": "user4.jpg"}
-        ]
+    {"name": "Петр",
+    "login": "user4",
+    "password": "123",
+    "photo": "user4.jpg"}
+]

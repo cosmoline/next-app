@@ -8,12 +8,7 @@ import photo3 from '../../public/user3.jpg'
 import photo4 from '../../public/user4.jpg'
 
 
-export default function Users() {
-
-
-        //fetch('https://fakestoreapi.com/products')
-        //<Image src={nextImgSrc} alt="siemens img" width='500' height='500' placeholder='blur'/>
-
+export default function Users({ users }) {
 
         return (
             <div>
@@ -23,11 +18,10 @@ export default function Users() {
                 <p>main users page</p> 
 
                 <div className={styles.box}>
-                {arrUsers.map((user) => (
-                    <div className={styles.tile} key={user.login}>
-                        <p>{user.name}</p>
-                        <p>{user.photo}</p>
-                        <Image src={photo1} width='500' height='500'/>
+                {users.map((user) => (
+                    <div className={styles.tile} key={user.login.username}>
+                        <p>{user.name.first} {user.name.last}</p>
+                        <img src={user.picture.large}/>
                         
                     </div>
                 ))}
@@ -38,3 +32,21 @@ export default function Users() {
 
 }
 
+
+// Эта функция вызывается во время сборки на стороне сервера.
+// Она не будет вызываться на стороне клиента, поэтому в этой
+// функции можно к примеру, напрямую обратиться к БД.
+export async function getStaticProps() {
+    const res = await fetch('https://randomuser.me/api/?page=3&results=10&seed=abc')
+    const json = await res.json()
+    const users = json.results
+    console.log(users);
+  
+    // Эта функция возвращает объект c объектом props.
+    // который в свою очередь будет передан в компонент Users(код которого описан выше)
+    return {
+      props: {
+        users,
+      },
+    }
+}
