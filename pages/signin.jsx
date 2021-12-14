@@ -23,7 +23,7 @@ export default function Signin() {
             </Head>
 
             <div>
-                <form class="loginForm" onSubmit={handleSubmit}>
+                <form className="loginForm" onSubmit={handleSubmit}>
                     <fieldset>
                     <legend>Учетные данные для входа в систему</legend>
                     <div>

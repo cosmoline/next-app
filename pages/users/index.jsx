@@ -21,6 +21,7 @@ export default function Users({ users }) {
                 {users.map((user) => (
                     <div className={styles.tile} key={user.login.username}>
                         <p>{user.name.first} {user.name.last}</p>
+                        {/* <Image src={user.picture.large} width='300' height='300' placeholder='blur'/> */}
                         <img src={user.picture.large}/>
                         
                     </div>

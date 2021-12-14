@@ -21,10 +21,10 @@ export default function Registration() {
             <Head>
                <title>Registration page</title> 
             </Head>
-            <p>It's Registration page</p> 
+            <p>It is Registration page</p> 
 
             <div>
-                <form class="loginForm" onSubmit={handleSubmit}>
+                <form className="loginForm" onSubmit={handleSubmit}>
                     <fieldset>
                     <legend>Введите регистрационные данные</legend>
                     <div>

@@ -8,9 +8,9 @@ export default function Profile() {
             <Head>
                <title>Profile page</title> 
             </Head>
-            <p>It's profile page</p> 
+            <p>It is profile page</p> 
             <p>
-                Тут информация о пользователе. Фото с https://tools.seo-zona.ru/face.html
+                User profile page.
             </p>
               
             <Image src={nextImgSrc} alt="siemens img" width='300' height='300' placeholder='blur'/>
