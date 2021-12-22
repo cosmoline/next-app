@@ -1,7 +1,16 @@
-import Image from 'next/image'
 import Head from 'next/head'
 
-export default function Signin() {
+import { ThemeProvider } from '@mui/material/styles';
+import { CacheProvider } from '@emotion/react';
+import theme from '../conf/them';
+import createEmotionCache from '../createEmotionCache';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+
+const clientSideEmotionCache = createEmotionCache();
+
+export default function Signin(props) {
+    const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
     const handleSubmit = (event) => {
         if (event) event.preventDefault();
@@ -17,6 +26,8 @@ export default function Signin() {
     }
 
     return (
+        <CacheProvider value={emotionCache}>
+        <ThemeProvider theme={theme}>       
         <div>
             <Head>
                <title>Signin page</title> 
@@ -25,28 +36,21 @@ export default function Signin() {
             <div>
                 <form className="loginForm" onSubmit={handleSubmit}>
                     <fieldset>
-                    <legend>Учетные данные для входа в систему</legend>
+                    <legend>Учетные данные для входа в систему</legend>                                     
                     <div>
-                        <input
-                        type="text"
-                        name="login"
-                        placeholder="Логин"
-                        value=""
-                        />
-                    </div>
+                        <TextField required id="login" name="login" label="Логин" variant="outlined"/>
+                    </div>                    
                     <div>
-                        <input
-                        type="password"
-                        name="password"
-                        placeholder="Пароль"
-                        value=""
-                        />
+                        <TextField required type="password"  id="password" name="password" label="Пароль" variant="outlined"/>
                     </div>
-                    <button type="submit">Войти</button>
+                    <Button variant="outlined" type="submit">Войти</Button> 
+                    
                     </fieldset>
                 </form>
             </div>
 
         </div>
+        </ThemeProvider>
+        </CacheProvider>
     )
 }

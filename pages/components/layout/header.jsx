@@ -3,7 +3,19 @@ import Link from 'next/link'
 import {useRouter} from 'next/router'
 import styles from './header.module.scss'
 
-export default function Header() {
+import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { CacheProvider } from '@emotion/react';
+import theme from '../../../conf/them';
+import createEmotionCache from '../../../createEmotionCache';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
+
+
+const clientSideEmotionCache = createEmotionCache();
+
+export default function Header(props) {
+    const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
     const router = useRouter()
 
@@ -15,32 +27,44 @@ export default function Header() {
 
 
     return (
-        <header className={styles.header}>
-            <Link href="/"> 
-                <a>Домой</a>
-            </Link>
-             &nbsp;|&nbsp;  
-             <Link href="/users">
-                <a>Пользователи</a>
-            </Link> 
-            &nbsp;|&nbsp;  
-             <Link href="profile">
-                <a>Профиль пользователя</a>
-            </Link> 
-            &nbsp;|&nbsp;
-            <Link href="signin">
-                <a>Вход</a>
-            </Link>                                 
-            &nbsp;|&nbsp;
-            <Link href="registration">
-                <a>Регистрация</a>
-            </Link>                    
-            &nbsp;&nbsp;            
-            <button onClick={handleClick}>
-                Go to user 1
-            </button>
+        <CacheProvider value={emotionCache}>
+            <ThemeProvider theme={theme}>
+                <header className={styles.header}>
 
-            
-        </header>
+
+                    <ButtonGroup variant="text" aria-label="text button group">
+                        <Button>
+                            <Link href="/"> 
+                                <a>Домой</a>
+                            </Link>
+                        </Button>
+                        <Button>
+                            <Link href="/users">
+                                <a>Пользователи</a>
+                            </Link> 
+                        </Button>
+                        <Button>
+                            <Link href="profile">
+                                <a>Профиль пользователя</a>
+                            </Link>                         
+                        </Button>
+                        <Button>
+                            <Link href="signin">
+                                <a>Вход</a>
+                            </Link>       
+                        </Button>
+                        <Button>
+                            <Link href="registration">
+                                <a>Регистрация</a>
+                            </Link>                         
+                        </Button>
+                    </ButtonGroup>  
+
+                    &nbsp;&nbsp; 
+                    <Button variant="contained" onClick={handleClick}>Go to user 1</Button> 
+
+                </header>
+            </ThemeProvider>
+        </CacheProvider>
     )
 }

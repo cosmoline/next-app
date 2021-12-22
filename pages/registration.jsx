@@ -1,8 +1,18 @@
 import Image from 'next/image'
 import Head from 'next/head'
 
-export default function Registration() {
+import { ThemeProvider } from '@mui/material/styles';
+import { CacheProvider } from '@emotion/react';
+import theme from '../conf/them';
+import createEmotionCache from '../createEmotionCache';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 
+const clientSideEmotionCache = createEmotionCache();
+
+export default function Registration(props) {
+    const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+    
     const handleSubmit = (event) => {
         if (event) event.preventDefault();
         fetch('https://fakestoreapi.com/auth/login',{
@@ -17,6 +27,8 @@ export default function Registration() {
     }
 
     return (
+        <CacheProvider value={emotionCache}>
+        <ThemeProvider theme={theme}>
         <div>
             <Head>
                <title>Registration page</title> 
@@ -28,34 +40,24 @@ export default function Registration() {
                     <fieldset>
                     <legend>Введите регистрационные данные</legend>
                     <div>
-                        <input
-                        type="text"
-                        name="name"
-                        placeholder="Имя"
-                        value=""
-                        />
+                        <TextField required id="name" name="name" label="Имя" variant="outlined"/>
+                    </div>   
+                    <div>
+                        <TextField id="surname" name="name" label="Фамилия" variant="outlined"/>
+                    </div>                                      
+                    <div>
+                        <TextField required id="login" name="login" label="Логин" variant="outlined"/>
                     </div>                    
                     <div>
-                        <input
-                        type="text"
-                        name="login"
-                        placeholder="Логин"
-                        value=""
-                        />
-                    </div>                    
-                    <div>
-                        <input
-                        type="password"
-                        name="password"
-                        placeholder="Пароль"
-                        value=""
-                        />
+                        <TextField required type="password"  id="password" name="password" label="Пароль" variant="outlined"/>
                     </div>
-                    <button type="submit">Зарегистрироваться</button>
+                    <Button variant="outlined" type="submit">Зарегистрироваться</Button> 
                     </fieldset>
                 </form>
             </div>
 
         </div>
+        </ThemeProvider>
+        </CacheProvider>
     )
 }

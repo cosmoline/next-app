@@ -37,7 +37,8 @@ export default function Users({ users }) {
 // Эта функция вызывается во время сборки на стороне сервера.
 // Она не будет вызываться на стороне клиента, поэтому в этой
 // функции можно к примеру, напрямую обратиться к БД.
-export async function getStaticProps() {
+//export async function getStaticProps() {
+export async function getServerSideProps() {
     const res = await fetch('https://randomuser.me/api/?page=3&results=10&seed=abc')
     const json = await res.json()
     const users = json.results
